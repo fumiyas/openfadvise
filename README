@@ -1,4 +1,4 @@
-open(2) / openat(2) wrapper to call posix_fadvise(3) after open
+openfadvise - open(2) wrapper to call posix_fadvise(3) after open
 
 Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp, Japan
               <http://www.OSSTech.co.jp/>
