@@ -5,7 +5,7 @@ if [ $# -lt 2 ]; then
   exit 1
 fi
 
-LD_PRELOAD="${LD_PRELOAD:+$LD_PRELOAD:}@libexecdir@/libopenfadvise.so"
+LD_PRELOAD="${LD_PRELOAD:+$LD_PRELOAD:}@libdir@/libopenfadvise.so"
 OPENFADVISE_ADVISE="$1"; shift
 export LD_PRELOAD OPENFADVISE_ADVISE
 
