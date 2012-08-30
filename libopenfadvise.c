@@ -31,13 +31,13 @@
 #define real_openat3(dirfd, fname, flags, mode) \
   (syscall(SYS_openat, (dirfd), (fname), (flags), (mode)))
 
-static int advice = -1;
+static int advise = -1;
 
 int open(const char *fname, int flags, ...)
 {
   va_list	arg_ptr;
   int		fd;
-  int		advice_errno;
+  int		advise_errno;
 
   if (flags & O_CREAT) {
     va_start(arg_ptr, flags);
@@ -52,13 +52,13 @@ int open(const char *fname, int flags, ...)
     return -1;
   }
 
-  if (advice == -1) {
+  if (advise == -1) {
     /* FIXME: Read from env */
-    advice = POSIX_FADV_NOREUSE;
+    advise = POSIX_FADV_NOREUSE;
   }
 
-  advice_errno = posix_fadvise(fd, 0, 0, advice);
-  if (advice_errno != 0) {
+  advise_errno = posix_fadvise(fd, 0, 0, advise);
+  if (advise_errno != 0) {
     /* FIXME: Warn */
   }
 
@@ -69,7 +69,7 @@ int openat(int dirfd, const char *fname, int flags, ...)
 {
   va_list	arg_ptr;
   int		fd;
-  int		advice_errno;
+  int		advise_errno;
 
   if (flags & O_CREAT) {
     va_start(arg_ptr, flags);
@@ -84,13 +84,13 @@ int openat(int dirfd, const char *fname, int flags, ...)
     return -1;
   }
 
-  if (advice == -1) {
+  if (advise == -1) {
     /* FIXME: Read from env */
-    advice = POSIX_FADV_NOREUSE;
+    advise = POSIX_FADV_NOREUSE;
   }
 
-  advice_errno = posix_fadvise(fd, 0, 0, advice);
-  if (advice_errno != 0) {
+  advise_errno = posix_fadvise(fd, 0, 0, advise);
+  if (advise_errno != 0) {
     /* FIXME: Warn */
   }
 
