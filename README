@@ -14,7 +14,7 @@ or:
   $ LD_PRELOAD=`pwd`/libopenfadvise.so OPENFADVISE_ADVISE=noreuse \
     grep foo /path/to/largefile
 
-Available values for $OPENFADVISE_ADVISE:
+Available values for $OPENFADVISE_ADVISE (see posix_fadvise(3)):
 
   normal
       POSIX_FADV_NORMAL: Indicates that the application has no
