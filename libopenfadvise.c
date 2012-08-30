@@ -16,7 +16,9 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include <stdarg.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/syscall.h>
@@ -31,7 +33,41 @@
 #define real_openat3(dirfd, fname, flags, mode) \
   (syscall(SYS_openat, (dirfd), (fname), (flags), (mode)))
 
+#define strequal(s1, s2) (strcmp((s1), (s2)) == 0)
+
+#define ADVISE_DEFAULT	POSIX_FADV_NORMAL
+
 static int advise = -1;
+
+static inline int advise_from_env(void)
+{
+  const char *advise_str = getenv("OPENFADVISE_ADVISE");
+
+  if (advise_str == NULL) {
+    return ADVISE_DEFAULT;
+  }
+
+  if (strequal(advise_str, "normal")) {
+    return POSIX_FADV_NORMAL;
+  }
+  if (strequal(advise_str, "sequential")) {
+    return POSIX_FADV_SEQUENTIAL;
+  }
+  if (strequal(advise_str, "random")) {
+    return POSIX_FADV_RANDOM;
+  }
+  if (strequal(advise_str, "noreuse")) {
+    return POSIX_FADV_NOREUSE;
+  }
+  if (strequal(advise_str, "willneed")) {
+    return POSIX_FADV_WILLNEED;
+  }
+  if (strequal(advise_str, "dontneed")) {
+    return POSIX_FADV_DONTNEED;
+  }
+
+  return ADVISE_DEFAULT;
+}
 
 int open(const char *fname, int flags, ...)
 {
@@ -53,8 +89,7 @@ int open(const char *fname, int flags, ...)
   }
 
   if (advise == -1) {
-    /* FIXME: Read from env */
-    advise = POSIX_FADV_NOREUSE;
+    advise = advise_from_env();
   }
 
   advise_errno = posix_fadvise(fd, 0, 0, advise);
@@ -85,8 +120,7 @@ int openat(int dirfd, const char *fname, int flags, ...)
   }
 
   if (advise == -1) {
-    /* FIXME: Read from env */
-    advise = POSIX_FADV_NOREUSE;
+    advise = advise_from_env();
   }
 
   advise_errno = posix_fadvise(fd, 0, 0, advise);
