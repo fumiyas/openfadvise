@@ -1,11 +1,25 @@
 CFLAGS = -Wall -fPIC
 
+prefix = /usr/local
+bindir = $(prefix)/bin
+libexecdir = $(prefix)/libexec
+
 default: build
 
 clean:
-	rm -f *.o *.so
+	rm -f openfadvise
+	rm -f *.o *.so *.tmp
 
-build: libopenfadvise.so
+install:
+	cp openfadvise $(bindir)
+	cp libopenfadvise.so $(libexecdir)
+
+build: openfadvise libopenfadvise.so
+
+openfadvise: openfadvise.sh
+	sed "s#@libexecdir@#$(libexecdir)#g" openfadvise.sh >$@.tmp
+	chmod +x $@.tmp
+	mv $@.tmp $@
 
 libopenfadvise.o: libopenfadvise.c
 

@@ -3,6 +3,10 @@ Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp, Japan
 
 Usage:
 
+  $ openfadvise noreuse grep foo /path/to/largefile
+
+or:
+
   $ LD_PRELOAD=`pwd`/libopenfadvise.so OPENFADVISE_ADVISE=noreuse \
     grep foo /path/to/largefile
 
