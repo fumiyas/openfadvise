@@ -1,6 +1,6 @@
 /*
    open(2) wrapper to call posix_fadvise(3) after open
-   Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp, Japan
+   Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp., Japan
                  <http://www.OSSTech.co.jp/>
                  <http://GitHub.com/fumiyas/>
 
