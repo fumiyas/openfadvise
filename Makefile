@@ -1,28 +1,34 @@
-CFLAGS = -Wall -fPIC
+BUILD_TARGETS = openfadvise libopenfadvise.so
+
+CC = cc
+CFLAGS = -O2 -Wall -fPIC
+LDSHARED = $(CC) -shared
+LDFLAGS =
 
 prefix = /usr/local
-bindir = $(prefix)/bin
-libdir = $(prefix)/lib
+exec_prefix = $(prefix)
+bindir = $(exec_prefix)/bin
+libdir = $(exec_prefix)/lib
 
 default: build
 
 clean:
-	rm -f openfadvise
+	rm -f $(BUILD_TARGETS)
 	rm -f *.o *.so *.tmp
 
 install:
 	cp openfadvise $(bindir)
 	cp libopenfadvise.so $(libdir)
 
-build: openfadvise libopenfadvise.so
+build: $(BUILD_TARGETS)
 
 openfadvise: openfadvise.sh
-	sed "s#@libdir@#$(libdir)#g" openfadvise.sh >$@.tmp
+	sed 's#@libdir@#$(libdir)#g' openfadvise.sh >$@.tmp
 	chmod +x $@.tmp
 	mv $@.tmp $@
 
 libopenfadvise.o: libopenfadvise.c
 
 libopenfadvise.so: libopenfadvise.o
-	$(CC) -shared -o $@ libopenfadvise.o
+	$(LDSHARED) $(LDFLAGS) -o $@ libopenfadvise.o
 
