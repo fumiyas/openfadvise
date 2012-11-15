@@ -1,4 +1,4 @@
-BUILD_TARGETS = openfadvise libopenfadvise.so
+BUILD_TARGETS = openfadvise openfadvise.so
 
 CC = cc
 CFLAGS = -O2 -Wall -fPIC
@@ -18,7 +18,7 @@ clean:
 
 install:
 	cp openfadvise $(bindir)
-	cp libopenfadvise.so $(libdir)
+	cp openfadvise.so $(libdir)
 
 build: $(BUILD_TARGETS)
 
@@ -27,8 +27,8 @@ openfadvise: openfadvise.sh
 	chmod +x $@.tmp
 	mv $@.tmp $@
 
-libopenfadvise.o: libopenfadvise.c
+openfadvise.o: openfadvise.c
 
-libopenfadvise.so: libopenfadvise.o
-	$(LDSHARED) $(LDFLAGS) -o $@ libopenfadvise.o
+openfadvise.so: openfadvise.o
+	$(LDSHARED) $(LDFLAGS) -o $@ openfadvise.o
 

@@ -10,7 +10,7 @@ Usage:
 
 or:
 
-  $ LD_PRELOAD=`pwd`/libopenfadvise.so OPENFADVISE_ADVISE=noreuse \
+  $ LD_PRELOAD=`pwd`/openfadvise.so OPENFADVISE_ADVISE=noreuse \
     grep foo /path/to/largefile
 
 Available values for $OPENFADVISE_ADVISE (see posix_fadvise(3)):
