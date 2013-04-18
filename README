@@ -1,7 +1,7 @@
 openfadvise - Command wrapper to call posix_fadvise(3) after open(2)
 Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp., Japan
               <http://www.OSSTech.co.jp/>
-              <http://GitHub.com/fumiyas/>
+              <https://GitHub.com/fumiyas/>
 ======================================================================
 
 Usage:
