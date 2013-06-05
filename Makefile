@@ -17,8 +17,12 @@ clean:
 	rm -f *.o *.so *.tmp
 
 install:
-	cp openfadvise $(bindir)
-	cp openfadvise.so $(libdir)
+	mkdir -p -m 0755 $(DESTDIR)$(bindir)
+	rm -f $(DESTDIR)$(bindir)/openfadvise
+	cp openfadvise $(DESTDIR)$(bindir)/
+	mkdir -p -m 0755 $(DESTDIR)$(libdir)
+	rm -f $(DESTDIR)$(libdir)/openfadvise.so
+	cp openfadvise.so $(DESTDIR)$(libdir)/
 
 build: $(BUILD_TARGETS)
 
