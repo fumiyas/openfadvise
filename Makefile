@@ -27,8 +27,6 @@ openfadvise: openfadvise.sh
 	chmod +x $@.tmp
 	mv $@.tmp $@
 
-openfadvise.o: openfadvise.c
-
 openfadvise.so: openfadvise.o
 	$(LDSHARED) $(LDFLAGS) -o $@ openfadvise.o
 
