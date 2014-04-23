@@ -44,3 +44,14 @@ Available values for `$OPENFADVISE_ADVISE` (see `posix_fadvise`(3)):
     * `POSIX_FADV_DONTNEED`: The specified data will not be
       accessed in the near future.
 
+TODO
+----------------------------------------------------------------------
+
+```
+$ openfadvise dontneed="*.log" rsyslog ...
+```
+
+```
+$ openfadvise dontneed="/var/log/" rsyslog ...
+```
+
