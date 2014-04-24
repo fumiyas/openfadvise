@@ -1,8 +1,9 @@
 /*
-   open(2) wrapper to call posix_fadvise(3) after open
-   Copyright (C) 2012 SATOH Fumiyasu @ OSS Technology Corp., Japan
+   open(2) wrapper to call posix_fadvise(2) after opening a file
+   Copyright (C) 2012-2014 SATOH Fumiyasu @ OSS Technology Corp., Japan
+		 <https://github.com/fumiyas/openfadvise>
+		 <http://fumiyas.github.io/>
                  <http://www.OSSTech.co.jp/>
-                 <http://GitHub.com/fumiyas/>
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by

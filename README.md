@@ -1,4 +1,4 @@
-openfadvise - Command wrapper to call posix_fadvise(3) after open(2)
+openfadvise - Command wrapper to call posix_fadvise(2) after open(2)
 ======================================================================
 
   * Copyright (c) 2012-2014 SATOH Fumiyasu @ OSS Technology Corp., Japan
@@ -21,7 +21,7 @@ $ LD_PRELOAD=`pwd`/openfadvise.so OPENFADVISE_ADVISE=noreuse \
   grep foo /path/to/largefile
 ```
 
-Available values for `$OPENFADVISE_ADVISE` (see `posix_fadvise`(3)):
+Available values for `$OPENFADVISE_ADVISE` (see `posix_fadvise`(2)):
 
   * `normal`
     * `POSIX_FADV_NORMAL`: Indicates that the application has no
