@@ -51,6 +51,9 @@ I heard current Linux kernel does NOT support `POSIX_FADV_NOREUSE`.
 
   https://twitter.com/kosaki55tea/status/459173892062720000
 
+GNU `cat`(1) calls `fadvise64(fd, 0, 0, POSIX_FADV_SEQUENTIAL)`
+after `open`(2) for all input files, thus `openfadvise` does not affect.
+
 TODO
 ----------------------------------------------------------------------
 
