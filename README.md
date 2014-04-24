@@ -44,14 +44,21 @@ Available values for `$OPENFADVISE_ADVISE` (see `posix_fadvise`(3)):
     * `POSIX_FADV_DONTNEED`: The specified data will not be
       accessed in the near future.
 
+Note
+----------------------------------------------------------------------
+
+I heard current Linux kernel does NOT support `POSIX_FADV_NOREUSE`.
+
+  https://twitter.com/kosaki55tea/status/459173892062720000
+
 TODO
 ----------------------------------------------------------------------
 
 ```
-$ openfadvise dontneed="*.log" rsyslog ...
+$ openfadvise noreuse="*.log" rsyslog ...
 ```
 
 ```
-$ openfadvise dontneed="/var/log/" rsyslog ...
+$ openfadvise noreuse="/var/log/" rsyslog ...
 ```
 
