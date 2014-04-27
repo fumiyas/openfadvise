@@ -49,7 +49,12 @@ Note
 
 I heard current Linux kernel does NOT support `POSIX_FADV_NOREUSE`.
 
-  https://twitter.com/kosaki55tea/status/459173892062720000
+  * https://twitter.com/kosaki55tea/status/459173892062720000
+
+See also:
+
+  * linux-ftools - Linux command line tools for fallocate, fincore, fadvise, etc
+    * http://code.google.com/p/linux-ftools/
 
 GNU `cat`(1) calls `fadvise64(fd, 0, 0, POSIX_FADV_SEQUENTIAL)`
 after `open`(2) for all input files, thus `openfadvise` does not affect.
